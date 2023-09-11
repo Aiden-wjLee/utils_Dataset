@@ -1,0 +1,13 @@
+__pycache__/
+.vscode/
+*.pth
+nachi*/
+prior/
+ubuntu_data/
+Water*/
+remove*/
+test/
+archive/
+archive.zip
+img*.mp4
+remove*.txt
