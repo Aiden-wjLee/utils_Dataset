@@ -36,17 +36,8 @@ def images_to_video(image_folder, video_name, fps, size=None):
 
 
 def main():
-    #image_folder = 'D:/OneDrive - Sogang/Sogang/23/papers/segment-anything-main (1)/segment-anything-main/notebooks/result/429_2120/'
-    #image_folder='D:/OneDrive - Sogang/Sogang/23/papers/segment-anything-main (1)/segment-anything-main/notebooks/result_new/Shelf5_051_1926/'
-    
     #'D:/C_data/Downloads/test6_video_pred_mask/content/Segment-and-Track-Anything/tracking_results/test6_video/test6_video_masks/'
-    
-    
-    ###image_folder='D:/Dataset/prior/floor_new_val2/'
     #image_folder='D:/Dataset/nachi/images_real_connector/left/'
-    #image_folder='D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/mask/cross_red/'
-    #image_folder='D:/Dataset/nachi_2560_1024/Original_L_2560_1024/'
-    #image_folder='D:/Dataset/nachi_error/origin/'
     #image_folder = '/media/lee/90182A121829F83C/Dataset/Water_real_floor/train/img/'
     image_folder ='/home/lee/ros2_ws_docker/src/Dataset/oakd/2023_09_02_11_56_50/'
     if not image_folder.endswith('/'):
