@@ -153,19 +153,22 @@ def main():
     Method:
         'image_folders' is a list of folders where images are stored.
         'integration_folder' is the folder where the integrated images will be saved.
+        
+    Args:
+        image_folders: list of folders where images are stored. (img : image_folders + 'img/', mask : image_folders + 'mask/')
+        integration_folder: folder where the integrated images will be saved. (img : integration_folder + ['train/' or 'validation'] + ['img/' or'mask/'] )
     """
 
     image_folders=[]
     #image_folders.append('D:/OneDrive - Sogang/Sogang/23/papers/segment-anything-main (1)/segment-anything-main/notebooks/result_new/Shelf1_051_1652_select/')
 
-    for i in range (1,2):
-        #image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/water_bot1/') #window
-        image_folders.append(f'/media/lee/90182A121829F83C/Dataset/ubuntu_data/back_1/img/') #ubuntu
 
-    intergration_folder='D:/Dataset/water_bot/' #window
-    intergration_folder='/media/lee/90182A121829F83C/Dataset/water_bot/' #ubuntu
-    
-    #image_folders.append('D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/green3/')
+    #=====================================================================================
+    #image_folders.append(f'/media/lee/90182A121829F83C/Dataset/ubuntu_data/back_1/img/') #ubuntu
+    image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/test/') #window
+    intergration_folder='D:/Dataset/nachi_test/' #window
+    #intergration_folder='/media/lee/90182A121829F83C/Dataset/water_bot/' #ubuntu
+    #=====================================================================================
     
     for image_folder in image_folders:
         if not image_folder.endswith('/'):
