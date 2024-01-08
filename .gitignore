@@ -11,3 +11,7 @@ archive/
 archive.zip
 img*.mp4
 remove*.txt
+command*
+*.jpg
+*.png
+*.txt

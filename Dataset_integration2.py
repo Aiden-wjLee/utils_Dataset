@@ -3,6 +3,7 @@ import cv2
 import os
 import re
 from tqdm import tqdm
+import random
 # Change to keep a note every time you save.
 def check_before_folder(image_folders,save_folder):
     if os.path.isfile(f"{save_folder}image_folder_list.txt"): #if txt file exist(list of image folder)
@@ -19,7 +20,7 @@ def save_txt_list_folder(write_image_folders,save_folder):
     file.write(write_image_folders+'\n')
     
 
-def dataset_integration(image_folders, save_folder):
+def dataset_integration(image_folders, save_folder, shuffle=False):
     # Exploring the images that already exist
     before_imgs_train = [img for img in os.listdir(save_folder+'train/img') if img.endswith(".png") or img.endswith(".jpg")]
     before_imgs_train.sort(key=lambda x: int(x.split('.')[0]))
@@ -93,6 +94,11 @@ def dataset_integration(image_folders, save_folder):
             print("len(labeling_imgs) != len(labeling_masks)")
             return 0
         
+        if shuffle:
+            combined = list(zip(labeling_imgs, labeling_masks))
+            random.shuffle(combined)
+            labeling_imgs[:], labeling_masks[:] = zip(*combined)
+            
         total_images = len(labeling_imgs)
         train_end_idx = int(0.8 * total_images)
         
@@ -165,8 +171,19 @@ def main():
 
     #=====================================================================================
     #image_folders.append(f'/media/lee/90182A121829F83C/Dataset/ubuntu_data/back_1/img/') #ubuntu
-    image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/test/') #window
-    intergration_folder='D:/Dataset/nachi_test/' #window
+    ###image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/nachi_old3/') #window
+    ###image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/nachi_old3_right/')
+    image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/images_20231028_manual_left/')
+    image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/images_20231028_manual_right/')
+    #for i in range(1, 3):
+        #image_folders.append(f'/media/lee/90182A121829F83C/Papers/Track-Anything_/result/img/Turtlebot_water{str(i)}/')
+        #image_folders.append(f'D:/OneDrive - Sogang/Sogang/23/papers/Track-Anything-master/result/img/nachi_grid_1027_right{i}/')
+    #image_folders.append('/media/lee/T7/dataset/result/img/left_test_manual/')
+
+    ###intergration_folder='D:/Dataset/nachi_old3/' #window
+
+    #integration_folder = '/media/lee/90182A121829F83C/Dataset/Turtlebot_water/'
+    integration_folder='D:/Dataset/nachi_manual_1028/'
     #intergration_folder='/media/lee/90182A121829F83C/Dataset/water_bot/' #ubuntu
     #=====================================================================================
     
@@ -176,18 +193,18 @@ def main():
             return 0
     
     #intergration_folder='/media/lee/90182A121829F83C/Dataset/Water_green/train/'
-    if not os.path.isdir(intergration_folder):
-        os.mkdir(intergration_folder)
+    if not os.path.isdir(integration_folder):
+        os.mkdir(integration_folder)
     for sub_folder in ['train', 'validation']:
-        if not os.path.isdir(os.path.join(intergration_folder, sub_folder, 'img')):
-            os.makedirs(os.path.join(intergration_folder, sub_folder, 'img'))
-        if not os.path.isdir(os.path.join(intergration_folder, sub_folder, 'mask')):
-            os.makedirs(os.path.join(intergration_folder, sub_folder, 'mask'))
+        if not os.path.isdir(os.path.join(integration_folder, sub_folder, 'img')):
+            os.makedirs(os.path.join(integration_folder, sub_folder, 'img'))
+        if not os.path.isdir(os.path.join(integration_folder, sub_folder, 'mask')):
+            os.makedirs(os.path.join(integration_folder, sub_folder, 'mask'))
 
         
-    does_not_exist=check_before_folder(image_folders, intergration_folder)
+    does_not_exist=check_before_folder(image_folders, integration_folder)
     if does_not_exist:
-        dataset_integration(image_folders, intergration_folder)
+        dataset_integration(image_folders, integration_folder, shuffle=True)
 
 if __name__ == "__main__":
     main()

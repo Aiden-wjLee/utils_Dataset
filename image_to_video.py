@@ -36,14 +36,20 @@ def images_to_video(image_folder, video_name, fps, size=None):
 
 
 def main():
+    """
+    Args:
+        image_folder (str): path to image folder.
+        video_name (str): path to video name.
+    """
     #'D:/C_data/Downloads/test6_video_pred_mask/content/Segment-and-Track-Anything/tracking_results/test6_video/test6_video_masks/'
     #image_folder='D:/Dataset/nachi/images_real_connector/left/'
     #image_folder = '/media/lee/90182A121829F83C/Dataset/Water_real_floor/train/img/'
-    image_folder ='/home/lee/ros2_ws_docker/src/Dataset/oakd/2023_09_02_11_56_50/'
+    #image_folder ='D:/Dataset/nachi_new_view/origin/'
+    image_folder = 'E:/dataset/nachi/images_20231028_manual/right/'  #origin/
     if not image_folder.endswith('/'):
         image_folder+='/'
     ###video_name = image_folder+'../floor_new_val2.avi'
-    video_name= image_folder+'../img1.mp4' #'../LR_2560_1024.mp4'
+    video_name= image_folder+'../images_20231028_manual_right.mp4' #'../LR_2560_1024.mp4'
     fps = 30
     images_to_video(image_folder, video_name, fps,(1280,512)) #(가로, 세로)
 
